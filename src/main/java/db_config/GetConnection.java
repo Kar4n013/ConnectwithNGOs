@@ -16,7 +16,7 @@ public class GetConnection {
 		}
 		Connection connection = null;
 		try {
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/ERP", "root", "");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/connectwithngos", "root", "K@r4n");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
