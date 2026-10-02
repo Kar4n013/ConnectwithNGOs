@@ -1,6 +1,6 @@
 package controllers;
 
-import model.Registration_pojo;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -9,34 +9,32 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/register")
+import Dao.RegistrationDao;
+
+@WebServlet("/RegistrationServlet")
 public class RegistrationServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		RegistrationDao registrationDao = new RegistrationDao();
 
-        String portId = request.getParameter("port_id");
-        String password = request.getParameter("password");
-        String location = request.getParameter("location");
-        String name = request.getParameter("name");
-        String email = request.getParameter("email");
+		final String name = request.getParameter("name");
+		final String phone = request.getParameter("phone");
+		final String email = request.getParameter("email");
+		final String state = request.getParameter("state");
+		final String district = request.getParameter("district");
+		final String password = request.getParameter("password");
 
-        Registration_pojo user = new Registration_pojo();
-        user.setPortId(portId);
-        user.setPassword(password);
-        user.setLocation(location);
-        user.setName(name);
-        user.setEmail(email);
+		final String role = request.getParameter("role");
+		System.out.println("Done");
+		
+		if (registrationDao.insert(name, phone, email, state, district, password, role)) {
+//			RequestDispatcher dispatcher = request.getRequestDispatcher("Login.jsp");
+//			dispatcher.forward(request, response);
+			System.out.println("got");
+			response.sendRedirect("Login.jsp");
+		}
 
-        if (user.registerUser()) {
-           
-            response.sendRedirect("Login.jsp");
-        } else {
-           
-            request.setAttribute("errorMessage", "Port ID or Email already exists!");
-            request.getRequestDispatcher("Registration.jsp").forward(request, response);
-        }
-    }
+	}
 }

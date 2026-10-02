@@ -18,20 +18,17 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		System.out.println("Servlet activated");
 		String user = request.getParameter("admin");
-
+		String dept = "admin_box";
 		if (user == null) {
 			user = request.getParameter("donor");
+			dept = "donor_box";
 		}
 
 		String password = request.getParameter("pass");
-		
-		System.out.println(user +" + "+ password);
+
 		if (user != null && password != null && !user.trim().isEmpty() && !password.trim().isEmpty()) {
-			System.out.println("Proceeding");
-			if (LoginDao.login(user, password)) {
-				System.out.println("Succesful");
+			if (LoginDao.login(user, password, dept)) {
 				HttpSession session = request.getSession();
 				session.setAttribute("userId", user);
 				response.sendRedirect("DashboardServlet");
