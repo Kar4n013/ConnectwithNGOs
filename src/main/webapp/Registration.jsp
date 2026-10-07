@@ -126,7 +126,7 @@ button:hover{
                         Submit
                     </button>
                     
-                    <a href="Login.jsp">Visit Example Website</a>
+                    <a href="Login.jsp">Login page</a>
                     
                     </div>
                 </form>

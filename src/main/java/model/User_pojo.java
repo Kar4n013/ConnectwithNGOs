@@ -3,18 +3,22 @@ package model;
 public class User_pojo {
 	final private int id;
 	final private String username;
-	final private String number;
+	final private String phone;
 	final private String email;
+	final private String address;
+	
+	public String getAddress() {
+		return address;
+	}
 	final private String role;
 	
-	
-	
-	public User_pojo(int id, String username, String number, String email, String role) {
-		super();
+	public User_pojo(int id, String username, String phone, String email,String address, String role) {
+		
 		this.id = id;
 		this.username = username;
-		this.number = number;
+		this.phone = phone;
 		this.email = email;
+		this.address = address;
 		this.role = role;
 	}
 	
@@ -25,7 +29,7 @@ public class User_pojo {
 		return username;
 	}
 	public String getNumber() {
-		return number;
+		return phone;
 	}
 	public String getEmail() {
 		return email;
