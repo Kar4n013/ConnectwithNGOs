@@ -21,16 +21,17 @@ public class ItemDao {
 	Connection connection = GetConnection.getConnection();
 	PreparedStatement preparedStatement;
 	
-	private boolean insertItem() {
+	public boolean insertItem() {
 			try {
-				preparedStatement = connection.prepareStatement("insert into items (name,category,url,description,phone)"
-						+ "values (?,?,?,?,?)");
+				preparedStatement = connection.prepareStatement("insert into items (email,phone,item_title,item_name,category,item_description)"
+						+ "values (?,?,?,?,?,?)");
 				
-				preparedStatement.setString(1, item_pojo.getItem_name());
-				preparedStatement.setString(2, item_pojo.getItem_category());
-				preparedStatement.setString(3, item_pojo.getItem_url());
-				preparedStatement.setString(4, item_pojo.getItem_description());
-				preparedStatement.setString(5, user_pojo.getNumber());
+				preparedStatement.setString(1, user_pojo.getEmail());
+				preparedStatement.setString(2, user_pojo.getNumber());
+				preparedStatement.setString(3, item_pojo.getItem_title());
+				preparedStatement.setString(4, item_pojo.getItem_name());
+				preparedStatement.setString(5, item_pojo.getItem_category());
+				preparedStatement.setString(6, item_pojo.getItem_description());
 				
 				
 				if (!preparedStatement.execute()) {

@@ -6,6 +6,8 @@ import java.sql.SQLException;
 
 public class GetConnection {
 
+	static Connection connection = null;
+	
 	public static Connection getConnection() {
 
 		try {
@@ -14,13 +16,13 @@ public class GetConnection {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Connection connection = null;
 		try {
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/connectwithngos", "root", "K@r4n");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		return connection;
 
 	}

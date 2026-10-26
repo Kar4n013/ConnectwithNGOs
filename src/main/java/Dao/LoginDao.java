@@ -1,6 +1,5 @@
 package Dao;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -15,10 +14,11 @@ public class LoginDao {
 		} else {
 			input = "phone";
 		}
+		System.out.println(userId+input+password+dept);
 
-		try (Connection connection = GetConnection.getConnection();
-				PreparedStatement stmt = connection.prepareStatement(
-						"SELECT email FROM " + dept + "_box WHERE " + input + " = ? AND password = SHA2(?,256)")) {
+		try (
+				PreparedStatement stmt = GetConnection.getConnection().prepareStatement(
+						"SELECT * FROM " + dept + "_box WHERE " + input + " = ? AND password = SHA2(?,256)")) {
 
 			stmt.setString(1, userId);
 			stmt.setString(2, password);
@@ -26,6 +26,7 @@ public class LoginDao {
 			try (ResultSet rs = stmt.executeQuery()) {
 				if (rs.next()) {
 					UserDao dao = new UserDao();
+					System.out.println("got userdao");
 					return dao.userdetails(rs.getString("email"),dept);
 				}
 			}

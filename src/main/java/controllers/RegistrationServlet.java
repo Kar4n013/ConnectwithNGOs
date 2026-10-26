@@ -1,6 +1,5 @@
 package controllers;
 
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -30,8 +29,6 @@ public class RegistrationServlet extends HttpServlet {
 		System.out.println("Done");
 		
 		if (registrationDao.insert(name, phone, email, state, district, password, role)) {
-//			RequestDispatcher dispatcher = request.getRequestDispatcher("Login.jsp");
-//			dispatcher.forward(request, response);
 			System.out.println("got");
 			response.sendRedirect("Login.jsp");
 		}

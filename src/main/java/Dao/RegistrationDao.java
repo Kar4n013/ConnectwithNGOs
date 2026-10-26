@@ -1,27 +1,26 @@
 package Dao;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import db_config.GetConnection;
 
 public class RegistrationDao {
 	String query;
-	Connection connection = GetConnection.getConnection();
-	CallableStatement statement;
+	PreparedStatement statement;
 
 	public boolean insert(String name, String phone, String email, String state, String district, String password,
 			String role) {
 
 		if (role.equals("admin")) {
-			query = "call add_admin(";
+			query = "insert into admin (name, phone, email, state, district, password) values (?,?,?,?,?,sha2(?,256))";
 		} else if(role.equals("donor")){
-			query = "call add_donor(";
+			query = "insert into donor (name, phone, email, state, district, password) values (?,?,?,?,?,sha2(?,256))";
 		}
+		
 
 		try {
-			statement = connection.prepareCall(query+"?,?,?,?,?,?)");
+			statement = GetConnection.getConnection().prepareStatement(query);
 			statement.setString(1, name);
 			statement.setString(2, phone);
 			statement.setString(3, email);

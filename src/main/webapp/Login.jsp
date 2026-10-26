@@ -18,7 +18,7 @@
             <button class="rolebutton" onclick="donor()" id="donor">Donor</button>
         </div>
         <div class="credentialbox">
-            <form action="LoginServlet" method="post">
+            <form action="LoginServlet" method="POST">
                 <input type="text" id = "user" name="admin"  placeholder="Admin Id (Phone Number or Email)">
                 <input type="password" id = "password" name="pass" placeholder="Password">
                 <button type="submit" class="proceed">

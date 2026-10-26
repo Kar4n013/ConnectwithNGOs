@@ -29,12 +29,13 @@ public class LoginServlet extends HttpServlet {
 
 		String password = request.getParameter("pass");
 
-		if (userid != null && password != null && !userid.trim().isEmpty() && !password.trim().isEmpty()) {
+		if (userid != null && password != null) {
 			User_pojo user = LoginDao.login(userid, password, dept);
 			if (user != null) {
+				System.out.println(user);
 				HttpSession session = request.getSession();
 				session.setAttribute("user", user);
-				response.sendRedirect("DashboardServlet");
+				response.sendRedirect("Dashboard.jsp");
 			} else {
 				System.out.println("Unsuccesful");
 				request.setAttribute("errorMessage", "Invalid Port ID or Password!");

@@ -38,4 +38,12 @@ public class User_pojo {
 		return role;
 	}
 
+	@Override
+	public String toString() {
+		return "User_pojo [id=" + id + ", username=" + username + ", phone=" + phone + ", email=" + email + ", address="
+				+ address + ", role=" + role + "]";
+	}
+	
+	
+
 }
